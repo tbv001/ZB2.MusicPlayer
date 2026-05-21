@@ -32,6 +32,7 @@ public class AudioLoader : MonoBehaviour
     private string _currentPlayingPath;
     private float _targetVolume = 1f;
     private float _maxVolume = 1f;
+    private bool _musicExist = true;
 
     private async void Awake()
     {
@@ -150,7 +151,7 @@ public class AudioLoader : MonoBehaviour
     {
         if (CurrentMusicType == musicType && _currentPlayingPath == path)
         {
-            _targetVolume = 1f;
+            _targetVolume = _musicExist ? 1f : 0f;
             return;
         }
 
@@ -158,11 +159,13 @@ public class AudioLoader : MonoBehaviour
 
         if (File.Exists(path))
         {
+            _musicExist = true;
             _targetVolume = 1f;
             LoadAndPlay(path);
         }
         else
         {
+            _musicExist = false;
             _currentPlayingPath = path;
             _targetVolume = 0f;
             MusicPlayer.Logger.LogError($"Music not found at: {path}");
