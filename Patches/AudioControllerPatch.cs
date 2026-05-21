@@ -30,6 +30,7 @@ public class AudioControllerPatch
             var audioLoaderInstance = AudioLoader.Instance;
             var isWaveActive = WavesController.instance.HaveToKillZombies;
             var activeBoss = GetHighestTierActiveBoss();
+            var currentWave = WavesController.instance.LastSpawnedWave;
 
             if (activeBoss != null)
             {
@@ -59,6 +60,10 @@ public class AudioControllerPatch
                 var curWaveTier = Traverse.Create(WavesController.instance).Field("WaveDefinition")
                     .Method("GetWaveTier", WavesController.instance.LastSpawnedWave).GetValue<int>();
                 audioLoaderInstance?.PlayMusic(MusicType.ActiveWave, curWaveTier);
+            }
+            else if (currentWave == 0)
+            {
+                audioLoaderInstance?.PlayMusic(MusicType.TimeUntilFirstWave);
             }
             else if (audioLoaderInstance != null && audioLoaderInstance.CurrentMusicType != MusicType.None &&
                      audioLoaderInstance.AudioSource.isPlaying)

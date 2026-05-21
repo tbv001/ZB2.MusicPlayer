@@ -12,6 +12,7 @@ public enum MusicType
 {
     None,
     Menu,
+    TimeUntilFirstWave,
     ActiveWave,
     BossRiot,
     BossQueen,
@@ -175,6 +176,12 @@ public class AudioLoader : MonoBehaviour
             case MusicType.Menu:
                 var menuMusicPath = Path.Combine(_musicFolder, "Menu.mp3");
                 ActuallyPlayMusic(menuMusicPath, MusicType.Menu);
+
+                break;
+
+            case MusicType.TimeUntilFirstWave:
+                var tufMusicPath = Path.Combine(_musicFolder, "TimeUntilFirstWave.mp3");
+                ActuallyPlayMusic(tufMusicPath, MusicType.TimeUntilFirstWave);
 
                 break;
 
