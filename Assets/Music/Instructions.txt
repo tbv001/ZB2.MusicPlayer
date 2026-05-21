@@ -1,9 +1,25 @@
 Place your .mp3 files here and rename them according to the list below:
 
-- Menu.mp3		-- Plays in the main menu.
-- Wave1.mp3		-- Plays during Tier 1 zumbie waves (before killing Riot).
-- Wave2.mp3		-- Plays during Tier 2 zumbie waves (after killing Riot).
-- Wave3.mp3		-- Plays during Tier 3 zumbie waves (after killing Queen).
-- BossRiot.mp3		-- Plays during the Riot Zumbie boss fight.
-- BossQueen.mp3		-- Plays during the Queen Zumbie boss fight.
-- BossReaper.mp3	-- Plays during the Reaper Zumbie boss fight.
+- Menu.mp3		    -- Plays in the main menu.
+- Wave1.mp3		    -- Plays during Tier 1 zumbie waves (before killing Riot).
+- Wave2.mp3		    -- Plays during Tier 2 zumbie waves (after killing Riot).
+- Wave3.mp3		    -- Plays during Tier 3 zumbie waves (after killing Queen) and above.
+
+# Boss Riot
+- BossRiot_1.mp3	-- Plays during the first phase.
+- BossRiot_2.mp3	-- Plays during the second phase.
+- BossRiot_3.mp3	-- Plays during the third phase.
+- BossRiot.mp3		-- Plays only as a fallback if any of the music for each boss phase above doesn't exist.
+
+# Boss Queen
+- BossQueen_1.mp3	-- Plays during the first phase.
+- BossQueen_2.mp3	-- Plays during the second phase.
+- BossQueen_3.mp3	-- Plays during the third phase.
+- BossQueen.mp3		-- Plays only as a fallback if any of the music for each boss phase above doesn't exist.
+
+# Boss Reaper
+- BossReaper_1.mp3	-- Plays during the first phase.
+- BossReaper_2.mp3	-- Plays during the second phase.
+- BossReaper_3.mp3	-- Plays during the third phase.
+- BossReaper_4.mp3	-- Plays during the fourth phase.
+- BossReaper.mp3	-- Plays only as a fallback if any of the music for each boss phase above doesn't exist.

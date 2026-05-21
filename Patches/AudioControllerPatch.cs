@@ -34,18 +34,19 @@ public class AudioControllerPatch
             if (activeBoss != null)
             {
                 var currentBoss = activeBoss.identity.type;
+                var phase = activeBoss.BossBehaviour.healthStage;
                 switch (currentBoss)
                 {
                     case ZombieType.BossRiot:
-                        audioLoaderInstance?.PlayMusic(MusicType.BossRiot);
+                        audioLoaderInstance?.PlayMusic(MusicType.BossRiot, phase: phase);
                         break;
 
                     case ZombieType.BossQueen:
-                        audioLoaderInstance?.PlayMusic(MusicType.BossQueen);
+                        audioLoaderInstance?.PlayMusic(MusicType.BossQueen, phase: phase);
                         break;
 
                     case ZombieType.BossReaper:
-                        audioLoaderInstance?.PlayMusic(MusicType.BossReaper);
+                        audioLoaderInstance?.PlayMusic(MusicType.BossReaper, phase: phase);
                         break;
 
                     default:

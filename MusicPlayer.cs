@@ -16,7 +16,7 @@ public class MusicPlayer : BaseUnityPlugin
     public const string PluginVersion = "1.1.0";
     internal new static ManualLogSource Logger;
     public Harmony HarmonyInstance = new(PluginGuid);
-    public static int MusicVolume = 100;
+    public static ConfigEntry<int> MusicVolumeCfg;
 
     private void Awake()
     {
@@ -36,8 +36,7 @@ public class MusicPlayer : BaseUnityPlugin
 
     private void InitConfig()
     {
-        ConfigEntry<int> musicVolumeConfig = Config.Bind("Settings", "Music Volume", 50,
+        MusicVolumeCfg = Config.Bind("Settings", "Music Volume", 50,
             new ConfigDescription("Sets the music volume.", new AcceptableValueRange<int>(0, 100)));
-        MusicVolume = musicVolumeConfig.Value;
     }
 }

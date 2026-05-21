@@ -73,7 +73,7 @@ public class AudioLoader : MonoBehaviour
         }
 
         var masterVolumeGame = PersistenceController.instance.soundsMenu.saveAudio.master / 100f;
-        var musicVolumeCfg = MusicPlayer.MusicVolume / 100f;
+        var musicVolumeCfg = MusicPlayer.MusicVolumeCfg.Value / 100f;
         _maxVolume = masterVolumeGame * musicVolumeCfg;
 
         if (AudioSource != null)
@@ -168,7 +168,7 @@ public class AudioLoader : MonoBehaviour
         }
     }
 
-    public void PlayMusic(MusicType musicType, int? waveTier = 1)
+    public void PlayMusic(MusicType musicType, int? waveTier = 1, int? phase = null)
     {
         switch (musicType)
         {
@@ -186,20 +186,19 @@ public class AudioLoader : MonoBehaviour
                 break;
 
             case MusicType.BossRiot:
-                var riotBossMusicPath = Path.Combine(_musicFolder, "BossRiot.mp3");
-                ActuallyPlayMusic(riotBossMusicPath, MusicType.BossRiot);
-
-                break;
-
             case MusicType.BossQueen:
-                var queenBossMusicPath = Path.Combine(_musicFolder, "BossQueen.mp3");
-                ActuallyPlayMusic(queenBossMusicPath, MusicType.BossQueen);
-
-                break;
-
             case MusicType.BossReaper:
-                var reaperBossMusicPath = Path.Combine(_musicFolder, "BossReaper.mp3");
-                ActuallyPlayMusic(reaperBossMusicPath, MusicType.BossReaper);
+                var baseName = musicType.ToString();
+                var bossMusicPath = phase > 0
+                    ? Path.Combine(_musicFolder, $"{baseName}_{phase}.mp3")
+                    : Path.Combine(_musicFolder, $"{baseName}.mp3");
+
+                if (phase > 0 && !File.Exists(bossMusicPath))
+                {
+                    bossMusicPath = Path.Combine(_musicFolder, $"{baseName}.mp3");
+                }
+
+                ActuallyPlayMusic(bossMusicPath, musicType);
 
                 break;
 
