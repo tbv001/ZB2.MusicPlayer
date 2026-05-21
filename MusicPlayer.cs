@@ -13,7 +13,7 @@ public class MusicPlayer : BaseUnityPlugin
 {
     public const string PluginGuid = "com.theblackvoid.musicplayer";
     public const string PluginName = "Music Player";
-    public const string PluginVersion = "1.1.0";
+    public const string PluginVersion = "1.2.0";
     internal new static ManualLogSource Logger;
     public Harmony HarmonyInstance = new(PluginGuid);
     public static ConfigEntry<int> MusicVolumeCfg;
