@@ -35,7 +35,10 @@ public class AudioControllerPatch
             if (activeBoss != null)
             {
                 var currentBoss = activeBoss.identity.type;
-                var phase = activeBoss.BossBehaviour.healthStage;
+                var bossBehaviour = activeBoss.BossBehaviour;
+                var phase = bossBehaviour.HasProtectedAction()
+                    ? bossBehaviour.CurrentHealthTargetStage()
+                    : bossBehaviour.healthStage;
                 switch (currentBoss)
                 {
                     case ZombieType.BossRiot:
