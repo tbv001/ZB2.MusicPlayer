@@ -6,7 +6,7 @@
 
 - Play your own `.mp3` music files during gameplay.
 - Adjust the music volume through the BepInEx configuration file.
-- Enjoy an original set of tracks, solely composed by [Goyabels](https://www.youtube.com/@M3LTINGINDUSTRI3S), included by default.
+- Enjoy an original set of tracks composed by [Goyabels](https://www.youtube.com/@M3LTINGINDUSTRI3S), included by default.
 
 ## Installation
 
