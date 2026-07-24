@@ -4,11 +4,11 @@ using MusicPlayer.Components;
 namespace MusicPlayer.Patches;
 
 [HarmonyPatch(typeof(AudioController))]
-public class AudioControllerPatch
+internal static class AudioControllerPatch
 {
     [HarmonyPatch("SetAmbientVolumes")]
     [HarmonyPostfix]
-    public static void SetAmbientVolumes_Postfix(AudioController __instance)
+    private static void PlayMusicInGame(AudioController __instance)
     {
         if (!ZBMain.instance.mapIsLoaded)
         {
@@ -31,7 +31,6 @@ public class AudioControllerPatch
             var isWaveActive = WavesController.instance.HaveToKillZombies;
             var activeBoss = GetHighestTierActiveBoss();
             var currentWave = WavesController.instance.LastSpawnedWave;
-
             if (activeBoss != null)
             {
                 var currentBoss = activeBoss.identity.type;
@@ -39,6 +38,7 @@ public class AudioControllerPatch
                 var phase = bossBehaviour.HasProtectedAction()
                     ? bossBehaviour.CurrentHealthTargetStage()
                     : bossBehaviour.healthStage;
+
                 switch (currentBoss)
                 {
                     case ZombieType.BossRiot:
@@ -61,7 +61,7 @@ public class AudioControllerPatch
             else if (isWaveActive)
             {
                 var curWaveTier = Traverse.Create(WavesController.instance).Field("WaveDefinition")
-                    .Method("GetWaveTier", WavesController.instance.LastSpawnedWave).GetValue<int>();
+                    .Method("GetWaveTier", currentWave).GetValue<int>();
                 audioLoaderInstance?.PlayMusic(MusicType.ActiveWave, curWaveTier);
             }
             else if (currentWave == 0)
@@ -88,15 +88,15 @@ public class AudioControllerPatch
         var zombies = ZombieLoader.Instance.zombies;
         foreach (var zombie in zombies)
         {
-            if (zombie.IsBoss && zombie.health.isAlive)
-            {
-                int tier = BossfightController.instance.GetBossTier(zombie.identity.type);
-                if (tier > maxTier)
-                {
-                    maxTier = tier;
-                    highestTierBoss = zombie;
-                }
-            }
+            if (!zombie.IsBoss || !zombie.health.isAlive)
+                continue;
+
+            var tier = BossfightController.instance.GetBossTier(zombie.identity.type);
+            if (tier <= maxTier)
+                continue;
+
+            maxTier = tier;
+            highestTierBoss = zombie;
         }
 
         return highestTierBoss;
