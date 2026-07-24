@@ -4,14 +4,14 @@
 
 ## Features
 
-- Play your own `.mp3` music files during gameplay.
-- Adjust the music volume through the BepInEx configuration file.
-- Enjoy an original set of tracks composed by [Goyabels](https://www.youtube.com/@M3LTINGINDUSTRI3S), included by default.
+- Play your own `.mp3` music files during gameplay
+- Adjust the music volume through the BepInEx configuration file
+- Enjoy an original set of tracks composed by [Goyabels](https://www.youtube.com/@M3LTINGINDUSTRI3S), included by default
 
 ## Installation
 
-1. Make sure you have the latest version of **BepInEx 5** installed.
-2. Download the latest version of the mod from the [releases](https://github.com/tbv001/ZB2.MusicPlayer/releases) page.
+1. Make sure you have the latest version of **BepInEx 5** installed
+2. Download the latest version of the mod from the [releases](https://github.com/tbv001/ZB2.MusicPlayer/releases) page
 3. Copy the contents of the zip file into the `plugins` folder of your BepInEx installation:
 
 ```
