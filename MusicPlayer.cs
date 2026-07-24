@@ -8,12 +8,10 @@ using MusicPlayer.Components;
 
 namespace MusicPlayer;
 
-[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+[BepInPlugin(PluginGuid, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public class MusicPlayer : BaseUnityPlugin
 {
     public const string PluginGuid = "com.theblackvoid.musicplayer";
-    public const string PluginName = "Music Player";
-    public const string PluginVersion = "1.2.0";
     internal new static ManualLogSource Logger;
     public Harmony HarmonyInstance = new(PluginGuid);
     public static ConfigEntry<int> MusicVolumeCfg;
@@ -23,7 +21,7 @@ public class MusicPlayer : BaseUnityPlugin
         Logger = base.Logger;
         try
         {
-            InitConfig();
+            Configure();
             gameObject.AddComponent<AudioLoader>();
             HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
             Logger.LogInfo("Successfully loaded!");
@@ -34,9 +32,9 @@ public class MusicPlayer : BaseUnityPlugin
         }
     }
 
-    private void InitConfig()
+    private void Configure()
     {
         MusicVolumeCfg = Config.Bind("Settings", "Music Volume", 50,
-            new ConfigDescription("Sets the music volume.", new AcceptableValueRange<int>(0, 100)));
+            new ConfigDescription("Sets the music volume", new AcceptableValueRange<int>(0, 100)));
     }
 }
