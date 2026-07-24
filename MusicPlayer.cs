@@ -11,7 +11,7 @@ namespace MusicPlayer;
 [BepInPlugin(PluginGuid, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public class MusicPlayer : BaseUnityPlugin
 {
-    public const string PluginGuid = "com.theblackvoid.musicplayer";
+    internal const string PluginGuid = "com.theblackvoid.musicplayer";
     internal new static ManualLogSource Logger;
     public Harmony HarmonyInstance = new(PluginGuid);
     public static ConfigEntry<int> MusicVolumeCfg;
